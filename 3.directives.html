@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue Grundlagen</title>
+  <link rel="stylesheet" href="theme.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="container" id="app" v-cloak>  
+    <div class="card center">
+      <h2>Directives</h2>
+
+      <!-- <h3>{{ title }}</h3> or without interpolation-->
+      <h3 v-text="'v-text: ' + title"></h3>
+      <h3 v-once>v-once: {{ title }}</h3> 
+      <!-- to show only once, content can't be changed -->
+      <h3 v-pre>v-pre: {{ title }}</h3> <!-- don't compile -->
+      <h3>v-html: </h3>
+      <h3 v-html="myHtml"></h3> <!-- don't compile -->
+
+      <button
+        class="btn"
+        @click="title = 'Have a good mood!'">
+        Change content
+      </button>
+    </div>
+
+    <div class="card center">
+      <h2>Directives 2</h2>
+      <h3>v-for</h3>
+      
+      <div class="flex">
+        <ul class="numbers list">
+          <li
+          class="list-item"
+          v-for="item in 3">
+          <strong>{{item}}</strong></li></ul>
+  
+          <ul class="list">
+            <li
+            class="list-item"
+            v-for="(item, key) in person">
+            <strong>{{ key }}:</strong>{{item}}</li></ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="3.directives.js"></script> 
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+/* 
+  el-t with this directive will not be shown 
+  it shows our app without any jumps or html-interpolations
+*/
+[v-cloak] {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.numbers {
+  padding-right: 2rem;
+}
+
+.flex-cc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
