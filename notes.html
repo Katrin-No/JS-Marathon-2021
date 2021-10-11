@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
   <div class="container" id="app">  
     <div class="card">
       <h1>{{ title }}</h1><!-- interpolation -->
@@ -17,22 +18,35 @@
         <!-- for html attributes we can't use interpolation, we should bind el-ts -->
         <input 
           type="text" 
-          v-bind:placeholder="placeholder" 
+          :placeholder="placeholder" 
           v-bind:value="inputValue"
           v-on:input="inputTitle"
-          v-on:keypress="inputKeypress"
+          @keypress.enter="addNote"
         /> 
+        <!-- v-bind == : -->
+        <!-- v-on == @ -->
       </div> 
-      <h2>{{inputValue}}</h2>
       <button class="btn" v-on:click="addNote">Add</button> 
       <hr /> 
-      <ul class="list">
+
+      <ul class="list" v-if="notes.length !== 0">
         <li class="list-item" 
-          v-for="n in notes"> 
+          v-for="(n, index) in notes"> 
           <!-- iteration -->
-          {{ n }}
-        </li> 
+          ({{ index + 1 }}) {{ makesUpper(n) }} 
+          <!-- methods can be called in interpolation -->
+          <button class="btn danger" v-on:click="removeNote(index)">Löschen</button> 
+          <!-- add $event after index if we need to become browser event  -->
+        </li>
+        
+        <hr /> 
+        <li>
+          <strong>Insgesamt:{{ notes.length }} | Mal 2 = {{ doubleCount }} </str ong>
+        </li>
       </ul>
+
+      <div v-if="notes.length === 0">Es gibt noch keine Notizen. Füge die erste hinzu!</div>
+    
     </div>
   </div>
 
