@@ -13,14 +13,16 @@
 
   <div class="container" id="app">  
     <div class="card">
-      <h1>{{ title }}</h1><!-- interpolation -->
+      <h1 
+        :style="{color: inputValue.length < 5 ? 'darkblue' : 'cadetblue',
+        fontSize: inputValue.length < 5 ? '1.9rem' : '2rem'}">
+        {{ title }}</h1><!-- interpolation -->
       <div class="form-control">
         <!-- for html attributes we can't use interpolation, we should bind el-ts -->
         <input 
           type="text" 
           :placeholder="placeholder" 
-          v-bind:value="inputValue"
-          v-on:input="inputTitle"
+          v-model="inputValue"
           @keypress.enter="addNote"
         /> 
         <!-- v-bind == : -->
@@ -31,10 +33,14 @@
 
       <ul class="list" v-if="notes.length !== 0">
         <li class="list-item" 
-          v-for="(n, index) in notes"> 
-          <!-- iteration -->
-          ({{ index + 1 }}) {{ makesUpper(n) }} 
-          <!-- methods can be called in interpolation -->
+          v-for="(n, index) in notes"> <!-- iteration -->
+          <span 
+          :class="n.length > 4 ? 'primary' : 'bold'">
+            ({{ index + 1 }}) {{ makesUpper(n) }}
+            <!-- methods can be called in interpolation -->
+            <!-- or :class="{'primary': true, 'bold': n.length < 5}" -->
+            <!-- or :class="['bold', {'primary': n.length > 5}]-->
+          </span>
           <button class="btn danger" v-on:click="removeNote(index)">Löschen</button> 
           <!-- add $event after index if we need to become browser event  -->
         </li>

@@ -8,12 +8,6 @@ const App = {
     }
   },
   methods: {
-    inputTitle(event){ // we will become native event
-      console.log("inputChangeHandler", event.target.value) 
-        // wil show how many times func was called + what we typed
-      this.inputValue = event.target.value // this - keyword to call data
-        // change value to what we typed in input field
-    }, 
     addNote(){
       if (this.inputValue !== "") {
         this.notes.push(this.inputValue) // py append
@@ -31,6 +25,14 @@ const App = {
     doubleCount(){ // is a getter
       return this.notes.length * 2 
     } 
+  },
+  watch: { // we can monitor changes in variables
+    inputValue(value) {
+      if (value.length > 10) { // validation
+        this.inputValue = ""
+      }
+      console.log("inputValue changed", value)
+    }
   }
 }
 
@@ -55,4 +57,18 @@ Vue.createApp(App).mount('#app') // connect with html
   }
   will be called so many times, how many chars you tipped
   -> for more productivity we use 'computed:' 
+
+3.
+  inputTitle(event){ // we will become native event
+    console.log("inputTitle", event.target.value) 
+      // wil show how many times func was called + what we typed
+    this.inputValue = event.target.value // this - keyword to call data
+      // change value to what we typed in input field
+  }, 
+  v-bind:value="inputValue"
+  v-on:input="inputTitle"
+
+  // or just one string in view:
+  v-model="inputValue"
+    
 */
