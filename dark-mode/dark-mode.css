@@ -1,0 +1,57 @@
+/* Themes */
+:root {
+  --background-color: #8a87a5;
+  --color: none;
+}
+
+[theme="dark"] {
+  --background-color: #2d2d2d;
+  --color: white;
+}
+
+* {
+  background-color: var(--background-color) !important;
+  color: var(--color) !important;
+}
+
+/* Toggle */
+
+.toggle-theme {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+
+.toggle-theme input {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background: none;
+  display: block;
+  appearance: none;
+  cursor: pointer;
+}
+
+.toggle-theme * {
+  background: transparent !important;
+  padding: .2rem
+}
+
+/* Other */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 50%;
+  align-self: center;
+  vertical-align: middle;
+  margin-top: 5rem;
+}
+
+/* for vue */
+[v-cloak] {
+  display: none;
+}
