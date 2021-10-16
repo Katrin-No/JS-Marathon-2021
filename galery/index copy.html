@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Galery</title>
+  <link href="js-icon.png" rel="shortcut icon" type="image/png">
+  </link>
+</head>
+
+<body id="app">
+  <h2>{{ title }}</h2>
+  <div class="container">
+    <div 
+      v-for="slide in slides" 
+      :class="slide == slides[2] ? 'slide active' : 'slide'"
+      :style="slide.style" 
+      v-on:click="active(index)">
+      <h3>{{ slide.name }}</h3>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="galery copy.js"></script>
+</body>
+
+</html>
