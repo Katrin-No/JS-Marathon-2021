@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: darkslateblue;
+  display: flex;
+  padding-top: 5rem;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+}
+
+h1 {
+  font-family: 'Indie Flower', cursive;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.row {
+  display: flex;
+  width: 600px;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.col-header,
+.item {
+  width: 150px;
+  box-shadow: 4px 4px 9px rgba(198, 198, 198, 0.36);
+  border-radius: 20px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.col-header {
+  color: #fff;
+}
+
+.item {
+  height: 66px;
+  border: 1px solid #eee;
+  background: #f7f6f7;
+  color: darkslateblue;
+  cursor: grab;
+}
+
+.item:active {
+  cursor: grabbing;
+}
+
+.placeholder {
+  width: 150px;
+  height: 66px;
+}
+
+.start {
+  background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
+}
+
+.progress {
+  background: linear-gradient(90deg, #209cff 0%, #68e0cf 100%);
+}
+
+.done {
+  background: linear-gradient(90deg, #84fab0 0%, #8fd3f4 100%);
+}
+
+/* task */
+.hold {
+  border: 5px solid #eee;
+  color: #837c7c;
+  padding-top: .9rem;
+}
+
+.hide {
+  display: none
+}
+
+.hovered {
+  background-color: #604ed3;
+  border-radius: 20px;
+}
+
+/* button */
+.btn {
+  color: darkslateblue;
+  position: relative;
+  width: 25%;
+  border-radius: 99px;
+  letter-spacing: 0.05em;
+  border: 1px solid darkslateblue;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.5rem 1.5rem;
+  margin-left: 20px;
+  font-weight: 700;
+  outline: none;
+  background: #bb8dec;
+  transition: all 0.22s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* form */
+.form-control {
+  position: relative;
+  margin-bottom: 0.5rem;
+  display: flex;
+}
+
+.form-control input,
+.form-control select {
+  margin: 0;
+  outline: none;
+  border: 2px solid #ccc;
+  display: block;
+  width: 25.5%;
+
+  color: #54cddd;
+  text-align: center;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+}
+
+.form-control input:active,
+.form-control input:focus {
+  transition: border 0.22s;
+  border: 2px solid #42b983;
+}
