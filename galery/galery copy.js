@@ -27,13 +27,16 @@ Vue.createApp({
     ]
   }),
   methods: {
-    // active(index) {
-    //   this.slides[index].classList.add(".active")
+    active(event) {
+      console.log (event.target)
+
+      // event.target.classList.add('.active')
+      // this.slides[index].classList.add(".active")
       // this.slides.forEach((slide) => {
         //   slide.classList.remove("active")
         //})
       
-    // }
+    }
   }
 }).mount('#app')
 
