@@ -46,3 +46,5 @@ function dragDrop(event) {
   event.target.classList.remove('hovered')
   event.target.append(item) // el-t stays in new placeholder
 }
+
+// https://jsfiddle.net/katrin_n/56nyqj9f/2/
