@@ -20,17 +20,18 @@
       <div class="col-header done">Done</div>
     </div>
 
-    <div class="row" v-for="task of tasks">
+    <div class="row" v-for="task, index of tasks">
       <div class="placeholder" 
         v-on:dragover="dragOver" 
         v-on:dragenter="dragEnter"
         v-on:dragleave="dragLeave"
-        v-on:drop="dragDrop">
+        v-on:drop="dragDrop(index)">
 
         <div class="item" 
           draggable="true"
           v-on:dragstart="dragStart"
-          v-on:dragend="dragEnd">
+          v-on:dragend="dragEnd"
+          :id="'card-' + index">
           {{ task }}
         </div>
       </div>

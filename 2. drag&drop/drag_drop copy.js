@@ -40,8 +40,10 @@ Vue.createApp({
       event.target.classList.remove('hovered')
     },
     dragDrop(event) {
+      console.log ("drag drop", event.target)
+
       event.target.classList.remove('hovered')
-      event.target.append(document.querySelector(".item")) // el-t stays in new placeholder
+      event.target.append(document.querySelector(".hold")) // el-t stays in new placeholder
     }
   },
   watch: { // we can monitor changes in variables
