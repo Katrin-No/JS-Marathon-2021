@@ -17,8 +17,9 @@ Vue.createApp({
       this.tasks.splice(index, 1) // to delete 1 el-t with index
     },
 
-    // drag&drop
+    // drag&drop: task
     dragStart(event) {
+      event.dataTransfer.setData('text/plain', event.target.id) // saves task.id in API
       event.target.classList.add('hold') // our el-t dissapears, thats why we need delay
       setTimeout(() => event.target.classList.add('hide'), 0) // callback func
       // el-t dissapears only in to-do col
@@ -29,6 +30,7 @@ Vue.createApp({
       // event.target.className = "item"
     },
 
+    // drag&drop: placeholder
     dragOver(event) { 
       event.preventDefault() // el-t doesn't come back in to-do
     },
@@ -40,10 +42,14 @@ Vue.createApp({
       event.target.classList.remove('hovered')
     },
     dragDrop(event) {
-      console.log ("drag drop", event.target)
-
       event.target.classList.remove('hovered')
-      event.target.append(document.querySelector(".hold")) // el-t stays in new placeholder
+
+      // get the draggable element
+      const id = event.dataTransfer.getData('text/plain'); // holt task.id aus API raus
+      const draggable = document.getElementById(id);
+
+      event.target.append(draggable) // el-t stays in new placeholder
+      // event.target.append(document.querySelector(".hold")) // el-t stays in new placeholder      
     }
   },
   watch: { // we can monitor changes in variables
