@@ -3,40 +3,43 @@ Vue.createApp({
     title: "Manage your tasks",
     placeholder: "New task",
     inputValue: "",
-    tasks: ["Task", "Vue"],
     
-    boardHeader: {
-      toDo: "<div class='col-header start'>To do</div>",
-      inP: "<div class='col-header progress'>In Progress</div>",
-      done: "<div class='col-header done'>Done</div>"
+    board: {
+      "To do": ["Task 1", "Vue", "Task 2"],
+      "In Progress": ["Wurst"],
+      "Review": [],
+      "Done": []
     },
-    boardBody: {
-      toDo: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop"></div>',
-      inP: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop">',
-      done: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop">'
-    }
   }),
   methods: {
+    longestLane(){
+      let longest = 0
+      // for (let i = 0; i <= this.board.length; i++) {
+      for (let i of Object.keys(this.board)) {
+        longest = this.board[i].length > longest ? this.board[i].length : longest
+      }
+      return longest
+    },
     // add&remove task
     addTask(){
       if (this.inputValue !== "") {
-        this.tasks.push(this.inputValue) // py append
+        this.board[0].push(this.inputValue) // py append
       this.inputValue = "" // to clear input field
       }
     },
     removeTask(index) {
-      this.tasks.splice(index, 1) // to delete 1 el-t with index
+      this.board[0].splice(index, 1) // to delete 1 el-t with index
     },
 
     // drag&drop: task
-    dragStart(event) {
-      event.dataTransfer.setData('text/plain', event.target.id) // saves task.id in API
+    dragStart(event, colName, rowIndex) {
+      let j = JSON.stringify({colName, rowIndex})
+      event.dataTransfer.setData('text/plain', j) // saves task.id in API
       event.target.classList.add('hold') // our el-t dissapears, thats why we need delay
       setTimeout(() => event.target.classList.add('hide'), 0) // callback func
       // el-t dissapears only in to-do col
     },
     dragEnd(event) {
-      console.log ("drag end", event.target)
       event.target.classList.remove('hold', 'hide') // or ->
       // event.target.className = "item"
     },
@@ -47,20 +50,20 @@ Vue.createApp({
     },
     dragEnter(event) {
       event.target.classList.add('hovered')
-      console.log ("drag enter", event.target)
     }, 
     dragLeave(event) {
       event.target.classList.remove('hovered')
     },
-    dragDrop(event) {
+    dragDrop(event, colName, rowIndex) {
       event.target.classList.remove('hovered')
 
       // get the draggable element
-      const id = event.dataTransfer.getData('text/plain'); // holt task.id aus API raus
-      const draggable = document.getElementById(id);
-
-      event.target.append(draggable) // el-t stays in new placeholder
-      // event.target.append(document.querySelector(".hold")) // el-t stays in new placeholder      
+      const j = JSON.parse(event.dataTransfer.getData('text/plain')); // holt task.id aus API raus
+      console.log("salamipizza", j, colName, rowIndex)
+      
+      let task = this.board[j.colName][j.rowIndex]
+      this.board[j.colName].splice(j.rowIndex, 1)
+      this.board[colName].splice(rowIndex, 0, task)
     }
   },
   watch: { // we can monitor changes in variables
