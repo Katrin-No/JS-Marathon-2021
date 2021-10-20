@@ -14,19 +14,13 @@
 <body>
   <div id="app" v-cloak>
     <h1>{{ title }}</h1>
+    
     <div class="row">
-      <div v-html="toDo"></div>
-      <div class="col-header progress">In progress</div>
-      <div class="col-header done">Done</div>
+      <div v-for="col in boardHeader" v-html="col"></div>
     </div>
 
     <div class="row" v-for="task, index of tasks">
-      <div class="placeholder" 
-        v-on:dragover="dragOver" 
-        v-on:dragenter="dragEnter"
-        v-on:dragleave="dragLeave"
-        v-on:drop="dragDrop">
-
+      <div v-for="placeholder in boardBody" v-html="placeholder">
         <div class="item" 
           draggable="true"
           v-on:dragstart="dragStart"
@@ -34,20 +28,6 @@
           :id="'card-' + index">
           {{ task }}
         </div>
-      </div>
-
-      <div class="placeholder" 
-        v-on:dragover="dragOver" 
-        v-on:dragenter="dragEnter"
-        v-on:dragleave="dragLeave"
-        v-on:drop="dragDrop">
-      </div>
-
-      <div class="placeholder" 
-        v-on:dragover="dragOver" 
-        v-on:dragenter="dragEnter"
-        v-on:dragleave="dragLeave"
-        v-on:drop="dragDrop">
       </div>
     </div>
 
@@ -62,7 +42,7 @@
   </div>
 
   <script src="https://unpkg.com/vue@next"></script>
-  <script src="drag_drop copy.js"></script>
+  <script src="drag_drop vue.js"></script>
 </body>
 
 </html>

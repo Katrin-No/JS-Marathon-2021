@@ -1,10 +1,20 @@
 Vue.createApp({
   data: () => ({
     title: "Manage your tasks",
-    toDo: "<div class='col-header start'>To do</div>",
     placeholder: "New task",
     inputValue: "",
-    tasks: ["Task", "Vue"]
+    tasks: ["Task", "Vue"],
+    
+    boardHeader: {
+      toDo: "<div class='col-header start'>To do</div>",
+      inP: "<div class='col-header progress'>In Progress</div>",
+      done: "<div class='col-header done'>Done</div>"
+    },
+    boardBody: {
+      toDo: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop"></div>',
+      inP: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop">',
+      done: '<div class="placeholder" v-on:dragover="dragOver" v-on:dragenter="dragEnter" v-on:dragleave="dragLeave" v-on:drop="dragDrop">'
+    }
   }),
   methods: {
     // add&remove task
