@@ -1,7 +1,7 @@
 Vue.createApp({
   data: () => ({
     title: "Manage your tasks",
-    toDo: "<div class='col-header start'>To do</div>",
+    toDo: "<div class='col-header todo'>To do</div>",
     placeholder: "New task",
     inputValue: "",
     tasks: ["Task", "Vue"]

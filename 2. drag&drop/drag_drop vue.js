@@ -5,11 +5,10 @@ Vue.createApp({
     inputValue: "",
     
     board: {
-      "To do": ["Task 1", "Vue", "Task 2"],
+      "To Do": ["Task 1", "Vue", "Task 2"],
       "In Progress": ["Wurst"],
-      "Review": [],
       "Done": []
-    },
+    }
   }),
   methods: {
     longestLane(){
@@ -20,10 +19,11 @@ Vue.createApp({
       }
       return longest
     },
+
     // add&remove task
     addTask(){
       if (this.inputValue !== "") {
-        this.board[0].push(this.inputValue) // py append
+        this.board['To Do'].push(this.inputValue) // py append
       this.inputValue = "" // to clear input field
       }
     },
@@ -64,6 +64,13 @@ Vue.createApp({
       let task = this.board[j.colName][j.rowIndex]
       this.board[j.colName].splice(j.rowIndex, 1)
       this.board[colName].splice(rowIndex, 0, task)
+    },
+
+    deleteTask(event){
+      const j = JSON.parse(event.dataTransfer.getData('text/plain')); // holt task.id aus API raus
+
+      event.target.classList.remove('hovered')
+      this.board[j.colName].splice(j.rowIndex, 1)
     }
   },
   watch: { // we can monitor changes in variables
@@ -71,7 +78,7 @@ Vue.createApp({
       if (value.length > 10) { // validation
         this.inputValue = ""
       }
-      console.log("inputValue changed", value)
+      // console.log("inputValue changed", value)
     }
   }
 }).mount('#app')

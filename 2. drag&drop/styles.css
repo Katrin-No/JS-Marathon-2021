@@ -62,11 +62,11 @@ h1 {
   height: 66px;
 }
 
-.start {
+.todo {
   background: linear-gradient(90deg, #ff85e4 0%, #229efd 179.25%);
 }
 
-.progress {
+.inprogress {
   background: linear-gradient(90deg, #209cff 0%, #68e0cf 100%);
 }
 
@@ -85,6 +85,14 @@ h1 {
   display: none
 }
 
+.delete {
+  background-color: #6c5dc9;
+  border-radius: 20px;
+  text-align: center;
+  padding: 1rem;
+  color: #ccc
+}
+
 .hovered {
   background-color: #604ed3;
   border-radius: 20px;
@@ -96,13 +104,8 @@ h1 {
   position: relative;
   width: 25%;
   border-radius: 99px;
-  letter-spacing: 0.05em;
   border: 1px solid darkslateblue;
-  text-decoration: none;
-  text-transform: uppercase;
   padding: 0.5rem 1.5rem;
-  margin-left: 20px;
-  font-weight: 700;
   outline: none;
   background: #bb8dec;
   transition: all 0.22s;
@@ -128,7 +131,7 @@ h1 {
   display: block;
   width: 25.5%;
 
-  color: #54cddd;
+  color: #483d8b;
   text-align: center;
   padding: 0.5rem 1.5rem;
   border-radius: 20px;

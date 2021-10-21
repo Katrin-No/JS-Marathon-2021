@@ -14,11 +14,13 @@
 <body>
   <div id="app" v-cloak>
     <h1>{{ title }}</h1>
-    <div>{{ longestLane() }}</div>
+    <!-- <div>{{ longestLane() }}</div> -->
 
     <div class="row">
       <div v-for="value, key in board">
-        <div class='col-header'>{{ key }}</div>
+        <div class='col-header' 
+          :class="key.split(' ').join('').toLowerCase()">
+          {{ key }}</div>
       </div>
     </div>
 
@@ -41,13 +43,21 @@
       </div>
     </div>
 
-    <div class="form-control">
+    <div class="row form-control">
       <input 
-          type="text" 
-          :placeholder="placeholder" 
-          v-model="inputValue"
-          @keypress.enter="addTask"
-        /> 
+        type="text" 
+        :placeholder="placeholder" 
+        v-model="inputValue"
+        @keypress.enter="addTask"
+      />
+
+      <div class="placeholder delete"
+        @dragover="dragOver" 
+        @dragenter="dragEnter"
+        @dragleave="dragLeave"
+        @drop="(event) => deleteTask(event, colName, rowNum - 1)"
+        >Delete
+      </div> 
     </div>
   </div>
 
