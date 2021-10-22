@@ -20,17 +20,6 @@ Vue.createApp({
       return longest
     },
 
-    // add&remove task
-    addTask(){
-      if (this.inputValue !== "") {
-        this.board['To Do'].push(this.inputValue) // py append
-      this.inputValue = "" // to clear input field
-      }
-    },
-    removeTask(index) {
-      this.board[0].splice(index, 1) // to delete 1 el-t with index
-    },
-
     // drag&drop: task
     dragStart(event, colName, rowIndex) {
       let j = JSON.stringify({colName, rowIndex})
@@ -42,6 +31,7 @@ Vue.createApp({
     dragEnd(event) {
       event.target.classList.remove('hold', 'hide') // or ->
       // event.target.className = "item"
+      this.setLocalBoard()
     },
 
     // drag&drop: placeholder
@@ -66,13 +56,33 @@ Vue.createApp({
       this.board[colName].splice(rowIndex, 0, task)
     },
 
-    deleteTask(event){
+    // add&remove task
+    addTask(){
+      if (this.inputValue !== "") {
+        this.board['To Do'].push(this.inputValue) // py append
+      this.inputValue = "" // to clear input field
+      }
+      this.setLocalBoard()
+    },
+    deleteTask(event) {
       const j = JSON.parse(event.dataTransfer.getData('text/plain')); // holt task.id aus API raus
-
       event.target.classList.remove('hovered')
       this.board[j.colName].splice(j.rowIndex, 1)
+    },
+
+    // set local storage
+    setLocalBoard() { // saves data as JSON
+      const parsed = JSON.stringify(this.board);
+      localStorage.setItem('board', parsed);
     }
   },
+  mounted() { // is used to load persisted data
+    if (localStorage.getItem('board')) { 
+      // get JSON value and returns object
+      this.board = JSON.parse(localStorage.getItem('board'));
+    }
+  },
+
   watch: { // we can monitor changes in variables
     inputValue(value) {
       if (value.length > 10) { // validation
