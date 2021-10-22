@@ -3,6 +3,22 @@ const App = { // is an object
     return { // in this method we need to return object
       counter: 0 // we create an object key
     }
+  },
+  methods: {
+    decrement() {
+      this.counter--
+      this.setLocalCounter()
+    },
+    setLocalCounter() {
+      localStorage.counter = this.counter
+    }
+  },
+  mounted() {
+    if (localStorage.counter) {
+      this.counter = Number(localStorage.counter) 
+      // because data in local storage are strings or:
+      // this.counter = +localStorage.counter
+    }
   }
 }
 

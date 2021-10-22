@@ -12,6 +12,7 @@ const App = {
       if (this.inputValue !== "") {
         this.notes.push(this.inputValue) // py append
       this.inputValue = "" // to clear input field
+      this.setLocalNotes() // to update local storage
       }
     },
     makesUpper(item) {
@@ -19,8 +20,22 @@ const App = {
     },
     removeNote(index) {
       this.notes.splice(index, 1) // to delete 1 el-t with index
+      this.setLocalNotes() // to update local storage
+    },
+
+    // set local storage
+    setLocalNotes() { // saves data as JSON
+      const parsed = JSON.stringify(this.notes);
+      localStorage.setItem('notes', parsed);
     }
   },
+  mounted() { // is used to load persisted data
+    if (localStorage.getItem('notes')) { 
+      // get JSON value and returns object
+      this.notes = JSON.parse(localStorage.getItem('notes'));
+    }
+  },
+
   computed: { // vi4eslyaemie // getter setter
     doubleCount(){ // is a getter
       return this.notes.length * 2 

@@ -14,9 +14,10 @@
     <div class="card center">
       <h1>Counter: {{ counter }}</h1> <!-- interpolation -->
       <div>
-        <button class="btn primary" v-on:click="counter++">+</button> 
+        <button class="btn primary" v-on:click="counter++; setLocalCounter()">+</button> 
         <!-- eventListener --> 
-        <button class="btn danger" v-on:click="counter--">-</button>
+        <!-- <button class="btn danger" v-on:click="counter--; setLocalCounter()">-</button> -->
+        <button class="btn danger" v-on:click="decrement()">-</button>
       </div>
     </div>
   </div>
