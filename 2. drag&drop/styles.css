@@ -116,6 +116,10 @@ h1 {
   opacity: 0.8;
 }
 
+.fas {
+  margin-top: .2rem;
+}
+
 /* form */
 .form-control {
   position: relative;
