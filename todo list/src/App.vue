@@ -1,23 +1,32 @@
 <template>
   <h1>ToDo App</h1>
+  <AddTask />
   <hr />
-  <ToDoList v-bind:tasks="tasks" />
+  <ToDoList v-model:tasks="tasks" @remove-task="removeTask" />
 </template>
 
 <script>
 import ToDoList from "@/components/ToDoList";
+import AddTask from "@/components/AddTask";
 export default {
   name: "App",
   data() {
     return {
       tasks: [
-        { id: 1, title: "Brot kaufen", completed: true },
+        { id: 1, title: "Brot kaufen", completed: false },
         { id: 2, title: "Butter kaufen", completed: false },
       ],
     };
   },
+  methods: {
+    removeTask(id) {
+      // this.tasks = this.tasks.splice(id, 1);
+      this.tasks = this.tasks.filter((t) => t.id !== id);
+    },
+  },
   components: {
     ToDoList,
+    AddTask,
   },
 };
 </script>

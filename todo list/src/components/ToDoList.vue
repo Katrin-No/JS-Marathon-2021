@@ -7,10 +7,9 @@
       <Task /> -->
       <Task
         v-for="task in tasks"
+        v-bind:task="task"
         :key="task.id"
-        :id="task.id"
-        :title="task.title"
-        :completed="task.completed"
+        v-on:mark-complete="markComplete"
         v-on:remove-task="removeTask"
       />
     </ul>
@@ -28,6 +27,18 @@ export default {
   methods: {
     removeTask(id) {
       console.log("hi", id);
+      this.$emit("remove-task", id);
+    },
+    markComplete(id) {
+      this.$emit(
+        "input",
+        this.tasks.map((task) => {
+          if (task.id == id) {
+            task.completed = !task.completed;
+          }
+          return task;
+        })
+      );
     },
   },
 };

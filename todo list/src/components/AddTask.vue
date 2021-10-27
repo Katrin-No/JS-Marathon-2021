@@ -1,0 +1,33 @@
+<template>
+  <form @submit.prevent="onSubmit">
+    <!-- to not reload the page -->
+    <input type="text" v-model="title" />
+    <button type="submit">Add</button>
+  </form>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: "",
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("submit", this.title);
+    },
+  },
+};
+</script>
+
+
+<style scoped>
+form {
+  display: flex;
+}
+
+input {
+  width: 400px;
+}
+</style>
