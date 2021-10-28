@@ -16,6 +16,16 @@ export default {
   methods: {
     onSubmit() {
       console.log("submit", this.title);
+      if (this.title.trim()) {
+        // if not empty
+        const newTask = {
+          id: Date.now(),
+          title: this.title,
+          completed: false,
+        };
+        this.$emit("add-task", newTask); // tells app-component, that we added new task
+        this.title = ""; // clears input field after submit
+      }
     },
   },
 };

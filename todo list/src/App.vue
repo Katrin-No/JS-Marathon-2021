@@ -1,6 +1,6 @@
 <template>
   <h1>ToDo App</h1>
-  <AddTask />
+  <AddTask @add-task="addTask" />
   <hr />
   <ToDoList v-model:tasks="tasks" @remove-task="removeTask" />
 </template>
@@ -22,6 +22,9 @@ export default {
     removeTask(id) {
       // this.tasks = this.tasks.splice(id, 1);
       this.tasks = this.tasks.filter((t) => t.id !== id);
+    },
+    addTask(task) {
+      this.tasks.push(task);
     },
   },
   components: {
