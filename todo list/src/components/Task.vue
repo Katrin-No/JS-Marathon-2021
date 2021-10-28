@@ -1,11 +1,14 @@
 <template>
   <li>
-    <span v-bind:class="{ done: task.completed }">
-      <input type="checkbox" v-on:change="$emit('mark-complete', task.id)" />
-      <strong>{{ task.id }}</strong>
-      {{ task.title }}
+    <span v-bind:class="{ done: paramTask.completed }">
+      <input
+        type="checkbox"
+        v-on:change="$emit('mark-complete', paramTask.id)"
+      />
+      <strong>{{ paramTask.id }}</strong>
+      {{ paramTask.title }}
     </span>
-    <button class="remove" v-on:click="$emit('remove-task', task.id)">
+    <button class="remove" v-on:click="$emit('remove-task', paramTask.id)">
       &times;
     </button>
   </li>
@@ -14,7 +17,7 @@
 <script>
 export default {
   props: {
-    task: {
+    paramTask: {
       type: Object,
       required: true,
     },

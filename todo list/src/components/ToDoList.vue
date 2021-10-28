@@ -6,8 +6,8 @@
       }}
       <Task /> -->
       <Task
-        v-for="task in tasks"
-        v-bind:task="task"
+        v-for="task in paramTasks"
+        v-bind:paramTask="task"
         :key="task.id"
         v-on:mark-complete="markComplete"
         v-on:remove-task="removeTask"
@@ -20,7 +20,7 @@
 import Task from "@/components/Task";
 
 export default {
-  props: ["tasks"], // property from data
+  props: ["paramTasks"], // parameter for components
   components: {
     Task,
   },
@@ -32,7 +32,7 @@ export default {
     markComplete(id) {
       this.$emit(
         "input",
-        this.tasks.map((task) => {
+        this.paramTasks.map((task) => {
           if (task.id == id) {
             task.completed = !task.completed;
           }

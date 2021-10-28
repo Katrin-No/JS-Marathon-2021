@@ -2,7 +2,7 @@
   <h1>ToDo App</h1>
   <AddTask @add-task="addTask" />
   <hr />
-  <ToDoList v-model:tasks="tasks" @remove-task="removeTask" />
+  <ToDoList v-model:paramTasks="tasks" @remove-task="removeTask" />
 </template>
 
 <script>
