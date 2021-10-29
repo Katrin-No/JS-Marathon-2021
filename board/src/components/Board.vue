@@ -1,41 +1,26 @@
-<template>
-  <div>
-    <div class="row">
-      <div class="row">
-        <div v-for="(value, key) in value" v-bind:key="key">
-          <div
-            class="col-header"
-            :class="key.split(' ').join('').toLowerCase()"
-          >
-            {{ key }}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="row" v-for="rowNum in longestLane() + 1" v-bind:key="rowNum">
-      <!-- 3 ph (1 for each colName) in each raw -->
-      <div
-        class="placeholder"
-        v-for="colName in Object.keys(value)"
-        v-bind:key="colName"
-        @dragover="dragOver"
-        @dragenter="dragEnter"
-        @dragleave="dragLeave"
-        @drop="(event) => dragDrop(event, colName, rowNum - 1)"
-      >
-        <div
-          class="item"
-          draggable="true"
-          v-if="value[colName][rowNum - 1]"
-          v-on:dragstart="(event) => dragStart(event, colName, rowNum - 1)"
-          v-on:dragend="dragEnd"
-        >
-          {{ value[colName][rowNum - 1] }}
-        </div>
-      </div>
-    </div>
-  </div>
+<template lang="pug">
+div
+  .row
+    div(v-for="(value, key) in value", v-bind:key="key")
+      .col-header(:class="key.split(' ').join('').toLowerCase()")
+        | {{ key }}
+  .row(v-for="rowNum in longestLane() + 1", v-bind:key="rowNum")
+    // 3 ph (1 for each colName) in each raw
+    .placeholder(
+      v-for="colName in Object.keys(value)",
+      v-bind:key="colName",
+      @dragover="dragOver",
+      @dragenter="dragEnter",
+      @dragleave="dragLeave",
+      @drop="(event) => dragDrop(event, colName, rowNum - 1)"
+    )
+      .item(
+        draggable="true",
+        v-if="value[colName][rowNum - 1]",
+        v-on:dragstart="(event) => dragStart(event, colName, rowNum - 1)",
+        v-on:dragend="dragEnd"
+      )
+        | {{ value[colName][rowNum - 1] }}
 </template>
 
 <script>

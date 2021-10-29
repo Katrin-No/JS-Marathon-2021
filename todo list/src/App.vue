@@ -1,17 +1,15 @@
-<template>
-  <div>
-    <h1>ToDo App</h1>
-    <AddTask @add-task="addTask" />
-    <select v-model="filter">
-      <option value="all">All</option>
-      <option value="completed">Completed</option>
-      <option value="not completed">Not completed</option>
-    </select>
-    <hr />
-    <Loader v-if="loading" />
-    <ToDoList v-model:paramTasks="filteredTasks" @remove-task="removeTask" />
-    <p v-if="filteredTasks.length === 0">No tasks</p>
-  </div>
+<template lang="pug">
+div
+  h1 ToDo App
+  AddTask(@add-task="addTask")
+  select(v-model="filter")
+    option(value="all") All
+    option(value="completed") Completed
+    option(value="not completed") Not completed
+  hr
+  Loader(v-if="loading")
+  ToDoList(v-model:paramTasks="filteredTasks", @remove-task="removeTask")
+  p(v-if="filteredTasks.length === 0") No tasks
 </template>
 
 <script>

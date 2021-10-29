@@ -1,17 +1,12 @@
-<template>
-  <li>
-    <span v-bind:class="{ done: paramTask.completed }">
-      <input
-        type="checkbox"
-        v-on:change="$emit('mark-complete', paramTask.id)"
-      />
-      <strong>{{ index + 1 }}</strong>
-      {{ paramTask.title }}
-    </span>
-    <button class="remove" v-on:click="$emit('remove-task', paramTask.id)">
-      &times;
-    </button>
-  </li>
+<template lang="pug">
+li
+  span(v-bind:class="{ done: paramTask.completed }")
+    input(type="checkbox", v-on:change="$emit('mark-complete', paramTask.id)")
+    strong {{ index + 1 }}
+    | {{ paramTask.title }}
+
+  button.remove(v-on:click="$emit('remove-task', paramTask.id)")
+    | ×
 </template>
 
 <script>

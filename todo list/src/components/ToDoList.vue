@@ -1,20 +1,14 @@
-<template>
-  <div>
-    <ul>
-      <!-- {{
-        tasks
-      }}
-      <Task /> -->
-      <Task
-        v-for="(task, i) in paramTasks"
-        :paramTask="task"
-        :index="i"
-        :key="task.id"
-        @mark-complete="markComplete"
-        @remove-task="removeTask"
-      />
-    </ul>
-  </div>
+<template lang="pug">
+div
+  ul
+    Task(
+      v-for="(task, i) in paramTasks",
+      :paramTask="task",
+      :index="i",
+      :key="task.id",
+      @mark-complete="markComplete",
+      @remove-task="removeTask"
+    )
 </template>
 
 <script>

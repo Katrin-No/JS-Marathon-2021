@@ -1,20 +1,19 @@
 <!-- https://loading.io/css/ -->
-<template>
-  <div class="lds-default">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</template>
+<template lang="pug">
+.lds-default
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+  div
+</template>  
 
 <style scoped>
 .lds-default {

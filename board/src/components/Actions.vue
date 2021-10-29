@@ -1,12 +1,11 @@
-<template>
-  <div class="row form-control">
-    <input
-      type="text"
-      v-model="title"
-      placeholder="New Task"
-      @keypress.enter="onSubmit"
-    />
-  </div>
+<template lang="pug">
+.row.form-control
+  input(
+    type="text",
+    v-model="title",
+    placeholder="New Task",
+    @keypress.enter="onSubmit"
+  )
 </template>
 
 <script>

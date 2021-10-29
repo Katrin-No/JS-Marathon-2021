@@ -1,9 +1,8 @@
-<template>
-  <form @submit.prevent="onSubmit">
-    <!-- to not reload the page -->
-    <input type="text" v-model="title" />
-    <button type="submit">Add</button>
-  </form>
+<template lang="pug">
+form(@submit.prevent="onSubmit") 
+  // to not reload the page
+  input(type="text", v-model="title")
+  button(type="submit") Add
 </template>
 
 <script>

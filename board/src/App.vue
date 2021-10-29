@@ -1,9 +1,9 @@
-<template>
-  <div id="app">
-    <h1>{{ title }}</h1>
-    <Board v-model="board" />
-    <Actions @add-task="addTask" />
-  </div>
+<template lang="pug">
+#app
+  h1
+    | {{ title }}
+  Board(v-model="board")
+  Actions(@add-task="addTask")
 </template>
 
 <script>
