@@ -5,7 +5,7 @@
         type="checkbox"
         v-on:change="$emit('mark-complete', paramTask.id)"
       />
-      <strong>{{ paramTask.id }}</strong>
+      <strong>{{ index + 1 }}</strong>
       {{ paramTask.title }}
     </span>
     <button class="remove" v-on:click="$emit('remove-task', paramTask.id)">
@@ -21,6 +21,7 @@ export default {
       type: Object,
       required: true,
     },
+    index: Number,
   },
 };
 </script>

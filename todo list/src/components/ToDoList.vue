@@ -6,11 +6,12 @@
       }}
       <Task /> -->
       <Task
-        v-for="task in paramTasks"
-        v-bind:paramTask="task"
+        v-for="(task, i) in paramTasks"
+        :paramTask="task"
+        :index="i"
         :key="task.id"
-        v-on:mark-complete="markComplete"
-        v-on:remove-task="removeTask"
+        @mark-complete="markComplete"
+        @remove-task="removeTask"
       />
     </ul>
   </div>

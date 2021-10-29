@@ -18,6 +18,14 @@ export default {
       ],
     };
   },
+  mounted() {
+    // when the hole component prepared html and placed it in DOM tree
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=3") // gets data from server (first 3)
+      .then((response) => response.json())
+      .then((json) => {
+        this.tasks = json;
+      });
+  },
   methods: {
     removeTask(id) {
       // this.tasks = this.tasks.splice(id, 1);
