@@ -2,9 +2,15 @@
   <div>
     <h1>ToDo App</h1>
     <AddTask @add-task="addTask" />
+    <select v-model="filter">
+      <option value="all">All</option>
+      <option value="completed">Completed</option>
+      <option value="not completed">Not completed</option>
+    </select>
     <hr />
     <Loader v-if="loading" />
-    <ToDoList v-model:paramTasks="tasks" @remove-task="removeTask" />
+    <ToDoList v-model:paramTasks="filteredTasks" @remove-task="removeTask" />
+    <p v-if="filteredTasks.length === 0">No tasks</p>
   </div>
 </template>
 
@@ -22,16 +28,31 @@ export default {
         { id: 2, title: "Butter kaufen", completed: false },
       ],
       loading: true, // before becoming data
+      filter: "all",
     };
   },
   mounted() {
     // when the hole component prepared html and placed it in DOM tree
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=3") // gets data from server (first 3)
+    fetch("https://jsonplaceholder.typicode.com/todos?_limit=10") // gets data from server (first 10)
       .then((response) => response.json())
       .then((json) => {
         this.tasks = json;
         this.loading = false; // after becoming data
       });
+  },
+  computed: {
+    filteredTasks() {
+      if (this.filter === "all") {
+        return this.tasks;
+      }
+      if (this.filter === "completed") {
+        return this.tasks.filter((t) => t.completed);
+      }
+      if (this.filter === "not completed") {
+        return this.tasks.filter((t) => !t.completed);
+      }
+      return this.tasks;
+    },
   },
   methods: {
     removeTask(id) {
