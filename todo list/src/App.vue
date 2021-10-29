@@ -1,13 +1,18 @@
 <template>
-  <h1>ToDo App</h1>
-  <AddTask @add-task="addTask" />
-  <hr />
-  <ToDoList v-model:paramTasks="tasks" @remove-task="removeTask" />
+  <div>
+    <h1>ToDo App</h1>
+    <AddTask @add-task="addTask" />
+    <hr />
+    <Loader v-if="loading" />
+    <ToDoList v-model:paramTasks="tasks" @remove-task="removeTask" />
+  </div>
 </template>
 
 <script>
 import ToDoList from "@/components/ToDoList";
 import AddTask from "@/components/AddTask";
+import Loader from "@/components/Loader";
+
 export default {
   name: "App",
   data() {
@@ -16,6 +21,7 @@ export default {
         { id: 1, title: "Brot kaufen", completed: false },
         { id: 2, title: "Butter kaufen", completed: false },
       ],
+      loading: true, // before becoming data
     };
   },
   mounted() {
@@ -24,6 +30,7 @@ export default {
       .then((response) => response.json())
       .then((json) => {
         this.tasks = json;
+        this.loading = false; // after becoming data
       });
   },
   methods: {
@@ -38,6 +45,7 @@ export default {
   components: {
     ToDoList,
     AddTask,
+    Loader,
   },
 };
 </script>
