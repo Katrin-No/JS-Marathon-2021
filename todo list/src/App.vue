@@ -40,9 +40,6 @@ export default {
   },
   computed: {
     filteredTasks() {
-      if (this.filter === "all") {
-        return this.tasks;
-      }
       if (this.filter === "completed") {
         return this.tasks.filter((t) => t.completed);
       }
