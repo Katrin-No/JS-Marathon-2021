@@ -46,7 +46,7 @@ export default {
       this.date = new Date();
     });
     this.dropdown = M.Dropdown.init(this.$refs.dropDown, {
-      constrainWidth: true,
+      constrainWidth: true, // dropdown.length = text.length
     }); // reference & materialize options
   },
   beforeDestroy() {
