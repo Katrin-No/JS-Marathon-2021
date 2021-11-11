@@ -8,7 +8,7 @@
       router-view
 
   .fixed-action-btn
-    a.btn-floating.btn-large.blue(href="#")
+    router-link.btn-floating.btn-large.blue(to="/record")
       i.large.material-icons add
 </template>
 
