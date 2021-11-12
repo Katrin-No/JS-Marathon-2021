@@ -36,7 +36,8 @@ export default {
     dropdown: null,
   }),
   methods: {
-    logout() {
+    async logout() {
+      await this.$store.dispatch("logout"); // calls logout method from store
       this.$router.push("/login?message=logout");
     },
   },

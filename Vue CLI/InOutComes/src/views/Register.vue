@@ -73,7 +73,7 @@ export default {
     agree: { checked: (value) => value },
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -84,8 +84,10 @@ export default {
         name: this.name,
       };
 
-      console.log(formData);
-      this.$router.push("/"); // after login redirect to home page
+      try {
+        await this.$store.dispatch("register", formData);
+        this.$router.push("/"); // after login redirect to home page
+      } catch (e) {}
     },
   },
 };
