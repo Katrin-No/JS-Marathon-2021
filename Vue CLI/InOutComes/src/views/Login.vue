@@ -2,7 +2,7 @@
 div
   form.card.auth-card(@submit.prevent="onSubmit")
     .card-content
-      span.card-title InOutComes
+      span.card-title(style="text-align: center") In Out Comes
       .input-field
         input#email.validate(
           type="text",
@@ -62,7 +62,7 @@ export default {
     password: { required, minLength: minLength(6) },
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       if (this.$v.$invalid) {
         // if the hole form is invalid
         this.$v.$touch(); // activate validation
@@ -73,8 +73,12 @@ export default {
         password: this.password,
       };
 
-      console.log(formData);
-      this.$router.push("/"); // after login redirect to home page
+      try {
+        await this.$store.dispatch("login", formData);
+
+        // console.log(formData);
+        this.$router.push("/"); // after login redirect to home page
+      } catch (e) {} // errors werden in store bearbeitet
     },
   },
   mounted() {

@@ -1,7 +1,7 @@
 <template lang="pug">
 form.card.auth-card(@submit.prevent="onSubmit")
   .card-content
-    span.card-title InOutComes
+    span.card-title(style="text-align: center") In Out Comes
     .input-field
       input#email(
         type="text",
