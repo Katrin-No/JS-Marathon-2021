@@ -32,9 +32,9 @@ div
         ) 
           | Password can't be blank
         small.helper-text.invalid(
-          v-else-if="$v.password.$dirty && !$v.email.minLength"
+          v-else-if="$v.password.$dirty && !$v.password.minLength"
         ) 
-          | Password has {{ password.length }} chars. Minimum is {{ $v.password.$params.minLength.min }}
+          | Password has only {{ password.length }} chars. Minimum is {{ $v.password.$params.minLength.min }}
 
     .card-action
       div
@@ -49,6 +49,7 @@ div
 
 <script>
 import { email, required, minLength } from "vuelidate/lib/validators";
+import messages from "@/utils/messages";
 
 export default {
   name: "login",
@@ -67,8 +68,19 @@ export default {
         this.$v.$touch(); // activate validation
         return;
       }
+      const formData = {
+        email: this.email,
+        password: this.password,
+      };
+
+      console.log(formData);
       this.$router.push("/"); // after login redirect to home page
     },
+  },
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
   },
 };
 </script>
