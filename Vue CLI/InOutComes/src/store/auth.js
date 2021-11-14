@@ -7,7 +7,10 @@ export default {
       try {
         await firebase.auth().signInWithEmailAndPassword(email, password)
         // await - this method is async and returns promice
-      } catch (e) {}
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
     },
     async register({dispatch, commit}, {email, password, name}) {
       try {
@@ -20,7 +23,10 @@ export default {
           bill: 10000,
           name
         })
-      } catch (e) {}
+      } catch (e) {
+        commit('setError', e)
+        throw e
+      }
     },
     getUid() {
       const user = firebase.auth().currentUser
