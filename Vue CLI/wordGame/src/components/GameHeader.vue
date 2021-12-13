@@ -6,7 +6,7 @@
         v-on:dragstart="(event) => dragStart(event)"
         v-on:dragend="dragEnd")
     .steps
-      button.btn.btn-primary(@click="getNumber") ?
+      button.btn.btn-purple(@click="getNumber") ?
       .arrow ->
       button.btn.btn-primary {{ number }}
 </template>
@@ -21,6 +21,7 @@ export default {
   methods: {
     getNumber() {
       this.number = Math.floor(Math.random() * 6 + 1);
+      event.target.classList.toggle("btn-blue");
     },
     // drag&drop: character
     dragStart(event) {
@@ -51,17 +52,19 @@ export default {
   display: flex;
   margin: 1rem;
 }
-.blue {
-  background-color: #2196f3;
+.blue,
+.purple {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
+.btn-purple,
 .purple {
   background-color: #ae56ff;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+}
+.btn-blue,
+.blue {
+  background-color: #2196f3;
 }
 
 .hold {

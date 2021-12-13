@@ -1,8 +1,9 @@
 <template lang="pug">
   .container
+    FlipGame
     GameHeader
     .container
-      img.field(src="@/assets/haus.jpg")
+      img.field(src="@/assets/wetter.jpg")
       .squares
         .row(v-for="row in rows" :key="row")
           .square(v-for="square in squares" :key="square")
@@ -14,11 +15,13 @@
 </template>
 
 <script>
+import FlipGame from "@/components/FlipGame.vue";
 import GameHeader from "@/components/GameHeader.vue";
 
 export default {
   name: "Chatbox",
   components: {
+    FlipGame,
     GameHeader,
   },
   data: () => ({
