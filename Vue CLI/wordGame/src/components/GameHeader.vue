@@ -67,6 +67,10 @@ export default {
   background-color: #2196f3;
 }
 
+.btn {
+  color: white;
+}
+
 .hold {
   border: 5px solid #eee;
   color: #837c7c;
