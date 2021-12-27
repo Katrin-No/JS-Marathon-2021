@@ -8,11 +8,11 @@
 </template>
 
 <script>
-import { weather } from "./weather.js";
+import { weatherCards } from "./weatherCards.js";
 export default {
   name: "FlipGame",
   data: () => ({
-    flipper: weather,
+    flipper: weatherCards,
   }),
   methods: {
     flip() {

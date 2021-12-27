@@ -1,4 +1,4 @@
-export const weather = [
+export const weatherCards = [
   [
     {
       src: require("@/assets/bericht.jpg"),
