@@ -1,18 +1,18 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link to="/">Wetter</router-link> |
+      <router-link to="/at-home">Im Haus</router-link>
+    </div>
+    <router-view />
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <GameField />
   </div>
 </template>
 
 <script>
-import GameField from "./components/GameField.vue";
-
 export default {
   name: "App",
-  components: {
-    GameField,
-  },
 };
 </script>
 
